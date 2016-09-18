@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Collections;
+class Solution {
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+         string num= Console.ReadLine();
+        string [] firstArray= Console.ReadLine().Split(' ');
+        string [] secondArray= Console.ReadLine().Split(' ');
+        int n= Convert.ToInt32(num);
+        int [] arrayA= Array.ConvertAll(firstArray, int.Parse);
+        int [] arrayB= Array.ConvertAll(secondArray, int.Parse);
+        Dictionary<int, int> arrayC= new Dictionary<int,int>();
+        for (int i=0;i<n;i++)
+            for(int j=0;j<n;j++)
+            if(arrayA[i]==arrayB[j])
+            {
+            arrayC.Add(arrayA[i],Math.Abs(i-j));
+            break;
+        }
+      int min= arrayC.Values.Min();
+        int value= arrayC.ToList().OrderByDescending(e=>e.Key).Where(k=>k.Value==min).LastOrDefault().Key;
+         Console.WriteLine(value.ToString());
+       
+               
+    }
+}
