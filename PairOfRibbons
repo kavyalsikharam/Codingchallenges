@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+public class Solution {
+
+   public  static void Main(String[] args) {
+        int n = Convert.ToInt32(Console.ReadLine());
+        string[] c_temp = Console.ReadLine().Split(' ');
+        int[] c = Array.ConvertAll(c_temp,Int32.Parse);
+       Solution s= new Solution();
+       int numOfPairs= s.FindMatchingPairs(c, n);
+       Console.WriteLine(numOfPairs.ToString());
+        
+    }
+    public int FindMatchingPairs(int[] c, int n)
+        {
+        List <int> selectedRibbons= new List<int>();
+        int num=0;
+           for(int i=0;i<n; i++)
+               {
+               int count=0;
+               for(int j=0;j<c.Length;j++)
+               if(c[i] == c[j] )
+               {
+                   count++;    
+                    
+               }
+              
+               if(!selectedRibbons.Exists(e=>e==c[i]))
+                   {
+                   if(count%2==0)
+                   num=num+(count/2);
+                   else if(count%2==1)
+                       num= num+(count/2);
+                
+               selectedRibbons.Add(c[i]);
+               }
+           }
+        return num;  
+    }
+}
